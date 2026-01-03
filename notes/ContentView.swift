@@ -43,7 +43,7 @@ struct ContentView: View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading){
                 
-                TextField("Type the title", text: $Title)
+                TextField("Title", text: $Title)
                     .font(.system(.largeTitle, design: .default, weight: .bold))
                     .glassEffect()
                     .cornerRadius(16)
@@ -53,7 +53,7 @@ struct ContentView: View {
                     Text("Description")
                         .font(.system(size: 18, weight: .semibold, design: .default))
                         .frame(width: 100, alignment: .topLeading)
-                    TextField("Type here", text: $Description)
+                    TextField("Add a description", text: $Description)
                         .glassEffect()
                         .cornerRadius(16)
                         .font(.system(size: 18))
@@ -64,7 +64,7 @@ struct ContentView: View {
                 HStack() {
                     Text("Mood")
                         .font(.system(size: 18, weight: .semibold, design: .default))
-                        .frame(width: 92, alignment: .topLeading)
+                        .frame(width: 100, alignment: .topLeading)
                     Picker("Mood", selection: $SelectedMood) {
                         ForEach(Mood.allCases) { type in
                             Text(type.rawValue).tag(type)
@@ -95,21 +95,27 @@ struct ContentView: View {
                 }
             }
             .frame(height: 200)
+            ZStack(alignment: .topLeading) {
+                if isEditing {
+                    TextEditor(text: $MainContent)
+                        .font(.system(size: 20))
+                        .lineSpacing(5)
+                        .cornerRadius(8)
+                    if MainContent.isEmpty {
+                        Text("Start writing")
+                            .font(.system(size: 20))
+                            .lineSpacing(5)
+                            .padding(.horizontal, 4)
+                            .opacity(0.5)
+                    }
+                } else {
+                    Text(.init(MainContent))
+                        .font(Font.system(size: 22,))
+                        .padding(.top, 50)
+                }
+            }
             
-            if isEditing {
-                TextEditor(text: $MainContent)
-                    .foregroundStyle(.secondary)
-                    .font(.system(size: 20, design: .monospaced))
-                    .lineSpacing(5)
-                    .cornerRadius(8)
-            }
-            else {
-                Text(.init(MainContent))
-                    .font(Font.system(size: 22,))
-                    .padding(.top, 50)
-            }
             HStack {
-                
                 if saveButton {
                     Button {
                         saveButton = false
@@ -117,7 +123,6 @@ struct ContentView: View {
                         isEditing = false
 
                         saveNote(noteTitle: Title, noteDescription: Description, noteMood: SelectedMood.rawValue, noteDate: NoteDate, noteContent: MainContent)
-                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4){
                             withAnimation{
                                 showToast = false
@@ -151,7 +156,7 @@ struct ContentView: View {
                 if showToast {
                     HStack{
                         Text("Note saved.")
-                        Button("See the location", action: {
+                        Button("Reveal in Finder", action: {
                             openAndSelectFile()
                         })
                         .glassEffect()
