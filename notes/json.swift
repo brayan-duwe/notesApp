@@ -4,6 +4,7 @@ import AppKit
 let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
 struct NoteEntry: Codable {
+    var id = UUID()
     var title: String
     var description: String
     var selectedMood: String
@@ -19,14 +20,14 @@ func saveNote(noteTitle: String, noteDescription: String, noteMood: String, note
         noteDate: noteDate,
         mainContent: noteContent,
     )
-    WriteJsonFile(data: note)
+    writeJsonFile(data: note)
 }
 
 
-func WriteJsonFile(data: NoteEntry) {
+func writeJsonFile(data: NoteEntry) {
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
-    
+    encoder.dateEncodingStrategy = .iso8601
     do {
         let encodeData = try encoder.encode(data)
         var filename = "untitled.json"
@@ -41,6 +42,10 @@ func WriteJsonFile(data: NoteEntry) {
     } catch {
         print(error.localizedDescription)
     }
+}
+
+func readJsonFile(){
+    
 }
 
 func openAndSelectFile(){
