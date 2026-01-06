@@ -121,7 +121,6 @@ struct ContentView: View {
                         saveButton = false
                         showToast = true
                         isEditing = false
-
                         saveNote(noteTitle: Title, noteDescription: Description, noteMood: SelectedMood.rawValue, noteDate: NoteDate, noteContent: MainContent)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4){
                             withAnimation{
