@@ -7,6 +7,7 @@
   - [Files 📑](#files-)
   - [Mood section 😶](#mood-section-)
   - [Main content ✍️](#main-content-️)
+  - [Work in progress ⏳](#work-in-progress-)
   - [Next steps 👣](#next-steps-)
 
 ## Overview 🌎
@@ -38,7 +39,9 @@ Although you can't see the markdown when editing your note, when you save, the m
 
 *I plan to implement bold and italic buttons in the future🙏🏽.*
 
+## Work in progress ⏳
+- Implementing [listJsonFiles()](/notes/json.swift#L52-L62) and [ReadJsonFile()](/notes/json.swift#L64-L80) — to show all saved notes.
+
 ## Next steps 👣
-- Add a function called **ReadJsonFile()** — to show all saved notes.
 - Add a **+** button to allow users create a new note.
 - Add **bold** and **italic** buttons.
