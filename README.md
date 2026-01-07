@@ -18,8 +18,10 @@ This app allows users to create their own notes and save them locally. [Notes Ap
 <img width="1161" height="573" alt="App - Overview" src="https://github.com/user-attachments/assets/7c22370b-c9ed-44f9-acdc-c8d21fca9c15" />
 
 ## Files 📑
-- [ContentView.swift](/notes/ContentView.swift) - UX & UI.
-- [json.swift](/notes/json.swift) - Converts all the entries into a JSON format and saves to the file system.
+- [ContentView.swift](/notes/ContentView.swift) - Navigation split view.
+- [JsonUtil.swift](/notes/JsonUtil.swift) - Deal with Json files (save, list and import existent files).
+- [NoteDetailedView.swift](/notes/NoteDetailedView.swift) - Notes fields (all the main content).
+- [NoteManager.swift](/notes/NoteManager.swift) - NoteManager class, to deal with **New notes** (in the future, I will include functions such as **Delete notes**).
 - [notesApp.swift](/notes/notesApp.swift) - Runs the app.
 
 ## [Mood section 😶](/notes/ContentView.swift#L65-L79)
@@ -40,8 +42,10 @@ Although you can't see the markdown when editing your note, when you save, the m
 *I plan to implement bold and italic buttons in the future🙏🏽.*
 
 ## Work in progress ⏳
-- Implementing [listJsonFiles()](/notes/json.swift#L52-L62) and [readJsonFile()](/notes/json.swift#L64-L80) — to show all saved notes.
+- <s>Implementing [listJsonFiles()](/notes/json.swift#L52-L62) and [readJsonFile()](/notes/json.swift#L64-L80) — to show all saved notes.</s> ✅
+- <s>- Add a **+** button to allow users create a new note.</s> ✅
 
 ## Next steps 👣
-- Add a **+** button to allow users create a new note.
+- Add a delete button.
 - Add **bold** and **italic** buttons.
+- Improve UX & UI.
