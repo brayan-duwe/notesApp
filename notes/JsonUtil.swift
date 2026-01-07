@@ -7,7 +7,7 @@ let documentPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask
 let noteName = listJsonFiles()
 
 
-struct NoteEntry: Codable {
+struct NoteEntry: Codable, Identifiable, Hashable{
     var id = UUID()
     var title: String
     var description: String
@@ -41,7 +41,7 @@ func writeJsonFile(data: NoteEntry) {
             filename = "\(data.title).json"
         }
         
-        let fileURL = documentPath.appendingPathComponent("\(filename)")
+        let fileURL = documentPath.appendingPathComponent(filename)
         try encodeData.write(to: fileURL)
         
     } catch {
